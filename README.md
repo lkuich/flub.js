@@ -12,19 +12,46 @@ Point to your `index.js` as a module in your `index.html`
 <body>
   <!-- ... -->
 
-  <script src="src/index.js" type="module"></script>
+  <script src="index.js" type="module"></script>
 </body>
 ```
+
+flub provides a `core` library, that gives you access to underlying supporting elements such as `Div`, `P`, `A`, ect. They all follow a format of `Elm({ children: [], props })`.
 
 In your `index.js`, import `flub` and scaffold your `app`
 
 ```js
-import { App, Div } from 'flub';
+import { App, Div } from 'flub/core';
 
 // Our App's entry point
 App(document.body, { children: [
   Div({ text: "Hello world!" })
 ]});
+```
+
+flub also provides a `components` module which adds support for common positional arguments to reduce bracket clutter, as well as some helpful components
+
+```js
+function Home({ name = 'default' }) {
+  // Box is a Div, takes element or an array of elements
+  return Box([
+    // FaxuLink is an anchor with an onclick listener
+    FauxLink(`Hello ${name}!`, () => alert(`Hello ${name}!`)),
+    (setState) => Btn("Click to change name", () =>
+      // To update the component's state, we simply re-call the component
+      setState(
+        Home({ name: "flub" })
+      )
+    ),
+    // Row is a flexbox
+    Row([
+      // Text is a p tag
+      Text('Item 1'),
+      // We can change the type of tag to be a header
+      Text('Item 2', { type: 'h2' })
+    ], { gap: '12px' })
+  ]);
+}
 ```
 
 ## Usage
@@ -58,6 +85,9 @@ function Home({ name = 'default' }) {
 ```
 
 You can pass any function/component you like to `setState`, but to simply re-render our current component with our new state, we just recursively call our `Home` function with its new state.
+
+[A complete `core` only example](https://github.com/lkuich/flub.js/blob/master/example/src/index.js)
+[A complete `components` example](https://github.com/lkuich/flub.js/blob/master/example/src/index_components.js)
 
 ### Footnotes
 
