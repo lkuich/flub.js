@@ -2,7 +2,7 @@
 <img src="https://i.giphy.com/media/G918yAdtAeaqs/giphy.gif" />
 
 
-With inspiration from React and Flutter, flub is a minimal JS framework for quickly prototyping basic JS frontend apps.
+With inspiration from React and Flutter, flub is a minimal JS framework (`core` sits around 1.6 kB) for quickly prototyping basic JS frontend apps.
 
 ## UNPKG
 
@@ -75,7 +75,7 @@ App(document.body, { children: [
 ]});
 ```
 
-Or a function, which gives us access to the `setState` function, which lets us update our component's state
+Or a function, which gives us access to the `setState` function, which lets us update our component's state by completely re-rendering the component in the DOM
 
 ```js
 import { App, Div, P } from 'flub/core.js';
@@ -98,6 +98,37 @@ function Home({ name = 'default' }) {
 ```
 
 You can pass any function/component you like to `setState`, but to simply re-render our current component with our new state, we just recursively call our `Home` function with its new state.
+
+## Examples
+
+Here's a complete `Counter` app using flub `components`!
+
+```js
+import { App } from 'https://unpkg.com/flub.js@1.0.0/dist/core.js';
+import { Row, Btn, Text } from 'https://unpkg.com/flub.js@1.0.0/dist/components.js';
+
+App(document.body, { children: [
+  Counter
+]});
+
+function Counter({ count = 0 }) {
+  return Row([
+    Text(`Count: ${count}`, { type: 'h1' }),
+
+    (setState) => Btn("+", () =>
+      setState(
+        Counter({ count: count + 1 })
+      )
+    ),
+
+    (setState) => Btn("-", () =>
+      setState(
+        Counter({ count: count - 1 })
+      )
+    )
+  ], { gap: '2px', alignItems: 'center' });
+}
+```
 
 See [examples](https://github.com/lkuich/flub.js/blob/master/example) for complete examples with pure `core` and `components`.
 
