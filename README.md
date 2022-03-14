@@ -10,7 +10,7 @@ Import production `core` and `components` libraries from UNPKG
 
 ```js
 import { App, Frag } from 'https://unpkg.com/flub.js@1.0.0/dist/core.js';
-import { Row, Btn, Text, Box, FauxLink } from 'https://unpkg.com/flub.js@1.0.0/dist/components.js';
+import { Row, Text } from 'https://unpkg.com/flub.js@1.0.0/dist/components.js';
 ```
 
 ## Installation
