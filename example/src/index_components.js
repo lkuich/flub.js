@@ -1,5 +1,5 @@
-import { App, Frag } from './flub/core.js';
-import { Row, Btn, Text, Box, FauxLink } from './flub/components.js';
+import { App, Frag } from 'https://unpkg.com/flub.js@1.0.0/dist/core.js';
+import { Row, Btn, Text, Box, FauxLink } from 'https://unpkg.com/flub.js@1.0.0/dist/components.js';
 
 // Our App's entry point
 App(document.body, { children: [

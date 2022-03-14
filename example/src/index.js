@@ -1,4 +1,4 @@
-import { App, A, H1, Button, Div, Frag, inlineStyle } from './flub/core.js';
+import { App, A, H1, Button, Div, Frag, inlineStyle } from 'https://unpkg.com/flub.js@1.0.0/dist/core.js';
 
 // Our App's entry point
 App(document.body, { children: [

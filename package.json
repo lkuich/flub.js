@@ -5,10 +5,14 @@
   "author": "Loren Kuich <loren.jk3@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "npx webpack"
+    "build": "npx webpack",
+    "prepublishOnly": "npx webpack --mode=production"
   },
   "devDependencies": {
     "webpack": "^5.70.0",
     "webpack-cli": "^4.9.2"
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }

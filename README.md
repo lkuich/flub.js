@@ -4,6 +4,15 @@
 
 With inspiration from React and Flutter, flub is a minimal JS framework for quickly prototyping basic JS frontend apps.
 
+## UNPKG
+
+Import production `core` and `components` libraries from UNPKG
+
+```js
+import { App, Frag } from 'https://unpkg.com/flub.js@1.0.0/dist/core.js';
+import { Row, Btn, Text, Box, FauxLink } from 'https://unpkg.com/flub.js@1.0.0/dist/components.js';
+```
+
 ## Installation
 
 Point to your `index.js` as a module in your `index.html`
@@ -21,7 +30,7 @@ flub provides a `core` library, that gives you access to underlying supporting e
 In your `index.js`, import `flub` and scaffold your `app`
 
 ```js
-import { App, Div } from 'flub/core';
+import { App, Div } from 'flub/core.js';
 
 // Our App's entry point
 App(document.body, { children: [
@@ -32,6 +41,8 @@ App(document.body, { children: [
 flub also provides a `components` module which adds support for common positional arguments to reduce bracket clutter, as well as some helpful components
 
 ```js
+import { Box, FauxLink, Btn, Row, Text } from 'flub/components.js';
+
 function Home({ name = 'default' }) {
   // Box is a Div, takes element or an array of elements
   return Box([
@@ -67,6 +78,8 @@ App(document.body, { children: [
 Or a function, which gives us access to the `setState` function, which lets us update our component's state
 
 ```js
+import { App, Div, P } from 'flub/core.js';
+
 App(document.body, { children: [
   Home
 ]});
@@ -86,8 +99,7 @@ function Home({ name = 'default' }) {
 
 You can pass any function/component you like to `setState`, but to simply re-render our current component with our new state, we just recursively call our `Home` function with its new state.
 
-- [A complete `core` only example](https://github.com/lkuich/flub.js/blob/master/example/src/index.js)
-- [A complete `components` example](https://github.com/lkuich/flub.js/blob/master/example/src/index_components.js)
+See [examples](https://github.com/lkuich/flub.js/blob/master/example) for complete examples with pure `core` and `components`.
 
 ### Footnotes
 
