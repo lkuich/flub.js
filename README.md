@@ -86,8 +86,8 @@ function Home({ name = 'default' }) {
 
 You can pass any function/component you like to `setState`, but to simply re-render our current component with our new state, we just recursively call our `Home` function with its new state.
 
-[A complete `core` only example](https://github.com/lkuich/flub.js/blob/master/example/src/index.js)
-[A complete `components` example](https://github.com/lkuich/flub.js/blob/master/example/src/index_components.js)
+- [A complete `core` only example](https://github.com/lkuich/flub.js/blob/master/example/src/index.js)
+- [A complete `components` example](https://github.com/lkuich/flub.js/blob/master/example/src/index_components.js)
 
 ### Footnotes
 
