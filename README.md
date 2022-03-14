@@ -17,7 +17,7 @@ Point to your `index.js` as a module in your `index.html`
 In your `index.js`, import `flub` and scaffold your `app`
 
 ```js
-import { App, Div } from './flub.js';
+import { App, Div } from 'flub';
 
 // Our App's entry point
 App(document.body, { children: [
