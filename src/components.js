@@ -1,4 +1,4 @@
-import { A, Li, Ul, Button, Div, Frag, inlineStyle } from './core.js';
+import { Form, Input, A, Li, Ul, Button, Div, Frag, inlineStyle } from './core.js';
 
 export function Box(children, props) {
   if (!Array.isArray(children)) {
@@ -60,4 +60,38 @@ export function FauxLink(text, onclick, href = '#', props) {
 // size: ['span', 'p', 'h1', 'h2', 'h3', 'h4']
 export function Text(text, { type = 'p', props } = {}) {
   return Frag(type, { text, ...props });
+}
+
+export function TextInput(props) {
+  return Input({ type: 'text', ...props });
+}
+
+export function EmailInput(props) {
+  return Input({ type: 'text', ...props });
+}
+
+export function NumberInput(props) {
+  return Input({ type: 'number', ...props });
+}
+
+export function ManagedForm(props = {}, schema) {
+  return Form({
+    ...props,
+    onsubmit: schema.onSubmit ? onSubmit : null,
+    children: [...schema.fields.map(field => {
+      return field;
+    }), ...props.children]
+});
+
+  function onSubmit(e) {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const data = {};
+    for (var [key, value] of formData.entries()) {
+      data[key] = value;
+    }
+
+    schema.onSubmit(e, data);
+  }
 }

@@ -2,7 +2,16 @@
 <img src="https://i.giphy.com/media/G918yAdtAeaqs/giphy.gif" />
 
 
-With inspiration from React and Flutter, flub is a minimal JS framework (`core` sits around 1.6 kB) for quickly prototyping basic JS frontend apps. Born purely out of the hatrid of working with vanilla JS, and all the hassle of setting up and deploying frameworks like React, Vue, or Angular.
+With inspiration from React and Flutter, flub is a minimal JS framework (`core` sits around 1.6 kB) for quickly prototyping basic JS frontend apps. Born purely out of the hatrid of working with vanilla JS, and all the hassle of setting up and deploying frameworks like React, Vue, or Angular; flub is meant to be a helper where other, more heavy handed solutions might not be warrented.
+
+Some advantages of flub.js:
+- Vanilla JS, no external dependancies, components are just POCO functions
+- Extensible, since it's just functions, you can easily wrap components in your own functions to give them default properties and behaviour
+- Simple, no surprises, no new API's to learn, functions simply pass their props as HTML attributes:<br />`Img({ src: '...', class: 'apple' })` === `<img src="..." class="apple" />`
+- Stupid simple state, to update a components own state you.. call the component with it's new state. The component is completely re-rendered.
+- Simple setup, comilation, translation, ect
+- Easy to integrate and isolate, your components can attach to specific HTML elements, so your entire app doesn't have to be in flub
+- Tiny, there's really not much going on here.
 
 ## UNPKG
 

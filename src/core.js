@@ -96,6 +96,14 @@ export function Ul(props) {
   return Frag('ul', props);
 }
 
+export function Form(props) {
+  return Frag('form', props);
+}
+
+export function Img(props) {
+  return Frag('img', props);
+}
+
 export function inlineStyle(style) {
   return Object.keys(style).map(key => style[key] && `${key}:${style[key]}`).filter(Boolean).join(';') + ';';
 }
