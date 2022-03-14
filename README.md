@@ -1,4 +1,6 @@
-# flub
+# flub.js
+<img src="https://i.giphy.com/media/G918yAdtAeaqs/giphy.gif" />
+
 
 With inspiration from React and Flutter, flub is a minimal JS framework for quickly prototyping basic JS frontend apps.
 
@@ -55,7 +57,7 @@ function Home({ name = 'default' }) {
 }
 ```
 
-You can pass any function you like to `setState`, but to simply re-render our component with our new state, we just recursively call our `Home` function with its new state.
+You can pass any function/component you like to `setState`, but to simply re-render our current component with our new state, we just recursively call our `Home` function with its new state.
 
 ### Footnotes
 
