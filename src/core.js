@@ -28,10 +28,11 @@ export function Frag(type, props) {
         if (typeof child === 'function') {
           frag.append(child(setState));
         }
-        else
+        else {
           frag.append(child);
+        }
 
-          go.appendChild(frag);
+        go.appendChild(frag);
       }
     } else if (propName === 'text') {
       go.innerText = props.text;
@@ -39,29 +40,62 @@ export function Frag(type, props) {
     else if (propName.startsWith('on') && typeof props[propName] === 'function') {
       go[propName] = props[propName];
     }
-    else
+    else {
       go.setAttribute(propName, props[propName]);
+    }
   }
 
   return go;
 }
 
 export function Div(props) {
-  const div = Frag('div', props);
-  return div;
+  return Frag('div', props);
+}
+
+export function A(props) {
+  return Frag('a', props);
 }
 
 export function P(props) {
-  const p = Frag('p', props);
-  return p;
+  return Frag('p', props);
+}
+
+export function H1(props) {
+  return Frag('h1', props);
+}
+
+export function H2(props) {
+  return Frag('h2', props);
+}
+
+export function H3(props) {
+  return Frag('h3', props);
+}
+
+export function H4(props) {
+  return Frag('h4', props);
 }
 
 export function Button(props) {
-  const button = Frag('button', props);
-  return button;
+  return Frag('button', props);
 }
 
 export function Input(props) {
-  const input = Frag('input', props);
-  return input;
+  return Frag('input', props);
+}
+
+export function Span(props) {
+  return Frag('span', props);
+}
+
+export function Li(props) {
+  return Frag('li', props);
+}
+
+export function Ul(props) {
+  return Frag('ul', props);
+}
+
+export function inlineStyle(style) {
+  return Object.keys(style).map(key => style[key] && `${key}:${style[key]}`).filter(Boolean).join(';') + ';';
 }

@@ -1,0 +1,14 @@
+{
+  "name": "flub",
+  "version": "1.0.0",
+  "repository": "git@github.com:lkuich/flub.js.git",
+  "author": "Loren Kuich <loren.jk3@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "npx webpack"
+  },
+  "devDependencies": {
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2"
+  }
+}
