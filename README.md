@@ -1,16 +1,14 @@
 # flub.js
 <img src="https://i.giphy.com/media/G918yAdtAeaqs/giphy.gif" />
 
-
-With inspiration from React and Flutter, flub is a minimal JS framework (`core` sits around 1.6 kB) for quickly prototyping basic JS frontend apps. Born purely out of the hatrid of working with vanilla JS, and all the hassle of setting up and deploying frameworks like React, Vue, or Angular; flub is meant to be a helper where other, more heavy handed solutions might not be warrented.
+With inspiration from React and Flutter, flub is a minimal JS framework (`core` sits little over 1 kB) for quickly prototyping basic JS frontend apps. Born purely out of the hatrid of working with vanilla JS, and all the hassle of setting up and deploying frameworks like React, Vue, or Angular; flub is meant to be a helper where other, more heavy handed solutions might not be warrented.
 
 Some advantages of flub.js:
-- Vanilla JS, no external dependancies, components are just POCO functions
+- Vanilla JS, no external dependancies, components are just POCO functions, no compilation, virtual DOM, translation, ect
 - Extensible, since it's just functions, you can easily wrap components in your own functions to give them default properties and behaviour
 - Simple, no surprises, no new API's to learn, functions simply pass their props as HTML attributes:<br />`Img({ src: '...', class: 'apple' })` === `<img src="..." class="apple" />`
-- Stupid simple state, to update a components own state you.. call the component with it's new state. The component is completely re-rendered.
-- Simple setup, comilation, translation, ect
-- Easy to integrate and isolate, your components can attach to specific HTML elements, so your entire app doesn't have to be in flub
+- Stupid simple state, `setState` and `onCreate` are provided to your component to update a components own state. The component is completely re-rendered with each state update
+- Easy to integrate and isolate, your components can attach to specific HTML elements, your entire app doesn't have to be in flub
 - Tiny, there's really not much going on here.
 
 ## UNPKG
@@ -18,8 +16,8 @@ Some advantages of flub.js:
 Import production `core` and `components` libraries from UNPKG
 
 ```js
-import { App, Frag } from 'https://unpkg.com/flub.js@1.0.0/dist/core.js';
-import { Row, Text } from 'https://unpkg.com/flub.js@1.0.0/dist/components.js';
+import { App, Frag } from 'https://unpkg.com/flub.js@1.1.0/dist/core.js';
+import { Row, Text } from 'https://unpkg.com/flub.js@1.1.0/dist/components.js';
 ```
 
 ## Installation
@@ -52,16 +50,16 @@ flub also provides a `components` module which adds support for common positiona
 ```js
 import { Box, FauxLink, Btn, Row, Text } from 'flub/components.js';
 
-function Home({ name = 'default' }) {
+function Home({ name = 'default' }, { setState, onCreate }) {
+  onCreate(() => console.log("This will only run on first render"))
+
   // Box is a Div, takes element or an array of elements
   return Box([
     // FaxuLink is an anchor with an onclick listener
     FauxLink(`Hello ${name}!`, () => alert(`Hello ${name}!`)),
-    (setState) => Btn("Click to change name", () =>
-      // To update the component's state, we simply re-call the component
-      setState(
-        Home({ name: "flub" })
-      )
+    Btn("Click to change name", () =>
+      // To update the component's state, call setState provided in the function params
+      setState({ name: "flub" })
     ),
     // Row is a flexbox
     Row([
@@ -84,7 +82,7 @@ App(document.body, { children: [
 ]});
 ```
 
-Or a function, which gives us access to the `setState` function, which lets us update our component's state by completely re-rendering the component in the DOM
+Or a function signature, which gives us access to the `setState` function, which lets us update our component's state by completely re-rendering the component in the DOM
 
 ```js
 import { App, Div, P } from 'flub/core.js';
@@ -93,14 +91,11 @@ App(document.body, { children: [
   Home
 ]});
 
-function Home({ name = 'default' }) {
+function Home({ name = 'default' }, { setState }) {
   return Div({ children: [
     P({ text: `Hello ${name}!` }),
-    (setState) => Button({ text: "Click to change name", onclick: () => {
-      // To update the component's state, we simply re-call the component
-      setState(
-        Home({ name: "flub" })
-      );
+    Button({ text: "Click to change name", onclick: () => {
+      setState({ name: "flub" });
     }})
   ]});
 }
@@ -113,27 +108,23 @@ You can pass any function/component you like to `setState`, but to simply re-ren
 Here's a complete `Counter` app using flub `components`!
 
 ```js
-import { App } from 'https://unpkg.com/flub.js@1.0.0/dist/core.js';
-import { Row, Btn, Text } from 'https://unpkg.com/flub.js@1.0.0/dist/components.js';
+import { App } from 'https://unpkg.com/flub.js@1.1.0/dist/core.js';
+import { Row, Btn, Text } from 'https://unpkg.com/flub.js@1.1.0/dist/components.js';
 
 App(document.body, { children: [
   Counter
 ]});
 
-function Counter({ count = 0 }) {
+function Counter({ count = 0 }, { setState }) {
   return Row([
     Text(`Count: ${count}`, { type: 'h1' }),
 
-    (setState) => Btn("+", () =>
-      setState(
-        Counter({ count: count + 1 })
-      )
+    Btn("+", () =>
+      setState({ count: count + 1 })
     ),
 
-    (setState) => Btn("-", () =>
-      setState(
-        Counter({ count: count - 1 })
-      )
+    Btn("-", () =>
+      setState({ count: count - 1 })
     )
   ], { gap: '2px', alignItems: 'center' });
 }

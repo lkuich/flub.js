@@ -2,10 +2,27 @@ export function App(body, { children }) {
   const frag = document.createDocumentFragment();
   for (const child of children) {
     if (typeof child === 'function') {
-      frag.appendChild(child({}));
+      let elm = child({}, { setState, onCreate });
+
+      function onCreate(fn) {
+        if (fn) fn();
+      }
+
+      function setState(params) {
+        const content = child(params, { setState, onCreate: () => {} });
+
+        const parent = elm.parentNode;
+        parent.replaceChild(content, elm);
+
+        elm = content;
+      }
+
+      frag.appendChild(elm);
     }
-    else
-      frag.appendChild(child);
+    else {
+      if (child)
+        frag.appendChild(child);
+    }
   }
 
   body.innerHTML = '';
@@ -15,21 +32,32 @@ export function App(body, { children }) {
 export function Frag(type, props) {
   const go = document.createElement(type);
 
-  function setState(content) {
-    const parent = go.parentNode;
-    parent.replaceChild(content, go);
-  }
-
   for (const propName in props) {
     if (propName === 'children') {
       const frag = document.createDocumentFragment();
       
       for (const child of props.children) {
         if (typeof child === 'function') {
-          frag.append(child(setState));
+          let elm = child({}, { setState, onCreate });
+
+          function onCreate(fn) {
+            if (fn) fn();
+          }
+
+          function setState(params) {
+            const content = child(params, { setState, onCreate: () => {} });
+            
+            const parent = elm.parentNode;
+            parent.replaceChild(content, elm);
+
+            elm = content;
+          }
+
+          frag.append(elm);
         }
         else {
-          frag.append(child);
+          if (child)
+            frag.append(child);
         }
 
         go.appendChild(frag);
