@@ -1,8 +1,17 @@
-const _isFn = (fn) => typeof fn === 'function';
-const _frag = () => document.createDocumentFragment();
+const isFn = (fn) => typeof fn === 'function';
+
+const buildFrag = (children) => {
+  const frag = document.createDocumentFragment();
+  children.forEach(child => {
+    const childElm = buildChild(child);
+    if (childElm) frag.append(childElm)
+  });
+
+  return frag;
+}
 
 function buildChild(child) {
-  if (_isFn(child)) {
+  if (isFn(child)) {
     const useCreation = (fn) => fn();
 
     function setState(params) {
@@ -14,45 +23,30 @@ function buildChild(child) {
     let elm = child({}, { setState, useCreation });
     return elm;
   }
-  else {
-    return child;
-  }
+
+  return child;
 }
 
-export function App(body, { children }) {
-  const frag = _frag();
-  for (const child of children) {
-    if (child) {
-      frag.append(buildChild(child));
-    }
-  }
-
-  body.replaceChildren(frag);
+export function App(elm, { children }) {
+  elm.replaceChildren(
+    buildFrag(children)
+  );
 }
 
 export function Frag(type, props) {
   const elm = document.createElement(type);
 
   for (const propName in props) {
-    if (propName === 'children') {
-      const frag = _frag();
-      
-      for (const child of props.children) {
-        if (child) {
-          frag.append(buildChild(child));
-        }
-      }
-
-      elm.append(frag);
-    } else if (propName === 'text') {
+    if (propName === 'children')
+      elm.append(
+        buildFrag(props.children)
+      );
+    else if (propName === 'text')
       elm.innerText = props.text;
-    }
-    else if (propName.startsWith('on') && _isFn(props[propName])) {
+    else if (propName.startsWith('on') && isFn(props[propName]))
       elm[propName] = props[propName];
-    }
-    else {
+    else
       elm.setAttribute(propName, props[propName]);
-    }
   }
 
   return elm;
