@@ -1,5 +1,5 @@
-import { App, Frag, Button } from 'https://unpkg.com/flub.js@1.1.0/dist/core.js';
-import { Row, Btn, Text, Box, FauxLink, ManagedForm, TextInput, EmailInput } from 'https://unpkg.com/flub.js@1.1.0/dist/components.js';
+import { App, Frag, Button } from 'https://unpkg.com/flub.js/dist/core.js';
+import { Row, Btn, Text, Box, FauxLink, ManagedForm, TextInput, EmailInput } from 'https://unpkg.com/flub.js/dist/components.js';
 
 App(document.body, { children: [
   Home,
@@ -57,8 +57,8 @@ function SecondFormExample({ address = 'address...' }, { setState }) {
   ]);
 }
 
-function Counter({ count = 0 }, { setState, onCreate }) {
-  onCreate(() => {
+function Counter({ count = 0 }, { setState, useCreation }) {
+  useCreation(() => {
     console.log('First render');
   });
 

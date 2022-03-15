@@ -7,7 +7,7 @@ Some advantages of flub.js:
 - Vanilla JS, no external dependancies, components are just POCO functions, no compilation, virtual DOM, translation, ect
 - Extensible, since it's just functions, you can easily wrap components in your own functions to give them default properties and behaviour
 - Simple, no surprises, no new API's to learn, functions simply pass their props as HTML attributes:<br />`Img({ src: '...', class: 'apple' })` === `<img src="..." class="apple" />`
-- Stupid simple state, `setState` and `onCreate` are provided to your component to update a components own state. The component is completely re-rendered with each state update
+- Stupid simple state, `setState` and `useCreation` are provided to your component to update a components own state. The component is completely re-rendered with each state update
 - Easy to integrate and isolate, your components can attach to specific HTML elements, your entire app doesn't have to be in flub
 - Tiny, there's really not much going on here.
 
@@ -16,8 +16,8 @@ Some advantages of flub.js:
 Import production `core` and `components` libraries from UNPKG
 
 ```js
-import { App, Frag } from 'https://unpkg.com/flub.js@1.1.0/dist/core.js';
-import { Row, Text } from 'https://unpkg.com/flub.js@1.1.0/dist/components.js';
+import { App, Frag } from 'https://unpkg.com/flub.js/dist/core.js';
+import { Row, Text } from 'https://unpkg.com/flub.js/dist/components.js';
 ```
 
 ## Installation
@@ -50,8 +50,10 @@ flub also provides a `components` module which adds support for common positiona
 ```js
 import { Box, FauxLink, Btn, Row, Text } from 'flub/components.js';
 
-function Home({ name = 'default' }, { setState, onCreate }) {
-  onCreate(() => console.log("This will only run on first render"))
+function Home({ name = 'default' }, { setState, useCreation }) {
+  useCreation(() => console.log("This will only run on first render"));
+
+  console.log("However this will run every render");
 
   // Box is a Div, takes element or an array of elements
   return Box([
@@ -106,8 +108,8 @@ function Home({ name = 'default' }, { setState }) {
 Here's a complete `Counter` app using `flub components`!
 
 ```js
-import { App } from 'https://unpkg.com/flub.js@1.1.0/dist/core.js';
-import { Row, Btn, Text } from 'https://unpkg.com/flub.js@1.1.0/dist/components.js';
+import { App } from 'https://unpkg.com/flub.js/dist/core.js';
+import { Row, Btn, Text } from 'https://unpkg.com/flub.js/dist/components.js';
 
 App(document.body, { children: [
   Counter

@@ -1,4 +1,4 @@
-import { App, A, H1, Button, Div, Frag, inlineStyle } from 'https://unpkg.com/flub.js@1.1.0/dist/core.js';
+import { App, A, H, Button, Div, Frag, inlineStyle } from 'https://unpkg.com/flub.js/dist/core.js';
 
 // Our App's entry point
 App(document.body, { children: [
@@ -19,7 +19,8 @@ function Home({ name = 'default' }, { setState }) {
 
 function Counter({ count = 0 }, { setState }) {
   return Div({ children: [
-    H1({ text: `Count: ${count}` }),
+    // Header defaults to h1, to set it to h2, set { h: 2 }
+    H({ text: `Count: ${count}` }),
 
     Button({ text: "+", onclick: () => {
       setState(
