@@ -74,7 +74,7 @@ function Home({ name = 'default' }, { setState, onCreate }) {
 
 ## Usage
 
-At it's core, our most basic object is a `Frag`. Each `Frag` has a `type`, and `children`. A `child` can be a DOM Element like so
+At it's core, our most basic object is a `Frag`. Each `Frag` has a `type`, and `children`. A `child` can be a DOM Element like so:
 
 ```js
 App(document.body, { children: [
@@ -101,11 +101,9 @@ function Home({ name = 'default' }, { setState }) {
 }
 ```
 
-You can pass any function/component you like to `setState`, but to simply re-render our current component with our new state, we just recursively call our `Home` function with its new state.
-
 ## Examples
 
-Here's a complete `Counter` app using flub `components`!
+Here's a complete `Counter` app using `flub components`!
 
 ```js
 import { App } from 'https://unpkg.com/flub.js@1.1.0/dist/core.js';
