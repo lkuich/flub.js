@@ -1,5 +1,5 @@
-import { App, H, Img, Span, Button, Br, Nbsp } from 'https://unpkg.com/flub.js/dist/core.js';
-import { Row, Btn, Text, Link, Column, Box, ManagedForm, TextInput } from 'https://unpkg.com/flub.js/dist/components.js';
+import { App, H, Img, Span, Button, Br, Nbsp } from'./flub/core.js';
+import { Row, Btn, Text, Link, Column, Box, ManagedForm, TextInput } from './flub/components.js';
 
 const flubGithub = 'https://github.com/lkuich/flub.js';
 
@@ -74,9 +74,7 @@ function SearchResults({ search = 'mountains', images = [] }, { setState, useCre
   return Column([
     search && Text(`${search} Images`, { type: 'h2' }),
     Box(images.map(src =>
-      Box(
-        Link(Img({ src }), src, { target: '_blank' })
-      )
+      Link(Img({ src }), src, { target: '_blank' })
     ), { class: 'grid' }),
     images.length === 0 && Text('No images found', { type: 'h3' })
   ], { gap: '12px', alignItems: 'center' });

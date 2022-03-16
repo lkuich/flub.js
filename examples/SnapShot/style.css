@@ -45,26 +45,30 @@ h1 {
 }
 
 .grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 12px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  width: 80%;
   margin-bottom: 12px;
 }
 
-.grid > div {
+.grid > a {
   position: relative;
   width: 240px;
   height: 240px;
 }
 
-.grid > div > a img {
+.grid > a > img {
   position: absolute;
   width: 240px;
   height: 240px;
   object-fit: cover;
 }
 
-.grid > div > a img:hover {
+.grid > a > img:hover {
   width: 250px;
   height: 250px;
   position: relative;
