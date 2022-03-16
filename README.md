@@ -105,7 +105,7 @@ function Home({ name = 'default' }, { setState }) {
 
 ## Examples
 
-Here's a complete `Counter` app using `flub components`!
+Here's a simple `Counter` app using `flub components`!
 
 ```js
 import { App } from 'https://unpkg.com/flub.js/dist/core.js';
@@ -130,8 +130,8 @@ function Counter({ count = 0 }, { setState }) {
 }
 ```
 
-See [examples](https://github.com/lkuich/flub.js/blob/master/example) for complete examples with pure `core` and `components`.
+See the [SnapShot flub example](https://github.com/lkuich/flub.js/blob/master/examples/SnapShot) for a complete example!.
 
 ### Footnotes
 
-Just an experiment! Not for production use.
+Just an experiment! Major API changes inbound, not for production use.

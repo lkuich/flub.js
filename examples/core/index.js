@@ -1,4 +1,4 @@
-import { App, A, H, Button, Div, Frag, inlineStyle } from 'https://unpkg.com/flub.js/dist/core.js';
+import { App, A, H, Button, Div, Frag } from 'https://unpkg.com/flub.js/dist/core.js';
 
 // Our App's entry point
 App(document.body, { children: [
@@ -35,6 +35,6 @@ function Counter({ count = 0 }, { setState }) {
       );
     }}),
 
-  // Notice we can use standard attributes like "class"
-  ], style: inlineStyle({ display: 'flex', gap: '2px', 'align-items': 'center' }) });
+  // Notice we can use standard attributes like "style"
+  ], style: "display: flex; gap: 2px; align-items: center;" });
 }

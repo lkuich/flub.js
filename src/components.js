@@ -1,18 +1,13 @@
 import { Form, Input, A, Li, Ul, Button, Div, Frag } from './core.js';
 
-export const Box = (children, props) => {
-  if (!Array.isArray(children)) {
-    children = [children];
-  }
-
-  return Div({
+export const Box = (children, props) =>
+  Div({
     children,
     ...props
   });
-}
 
 export const Flex = (children, { gap, flexDirection, justifyContent, alignItems, props } = {}) =>
-  Div({ children, style: inlineStyle({
+  Box(children, { style: inlineStyle({
     display: 'flex',
     'flex-direction': flexDirection,
     'justify-content': justifyContent,
@@ -20,10 +15,10 @@ export const Flex = (children, { gap, flexDirection, justifyContent, alignItems,
     gap
   }), ...props });
 
-export const Row = (children, { gap, flexDirection = 'row', justifyContent, alignItems, props }) =>
+export const Row = (children, { gap, flexDirection = 'row', justifyContent, alignItems, props } = {}) =>
   Flex(children, { gap, flexDirection, justifyContent, alignItems, ...props });
 
-export const Column = (children, { gap, flexDirection = 'column', justifyContent, alignItems, props }) =>
+export const Column = (children, { gap, flexDirection = 'column', justifyContent, alignItems, props } = {}) =>
   Flex(children, { gap, flexDirection, justifyContent, alignItems, ...props });
 
 export const List = (items, props) =>
@@ -34,23 +29,23 @@ export const List = (items, props) =>
       return item;
   }), ...props });
 
-export const Btn = (text, onclick, props) => Button({ text, onclick, ...props });
+export const Btn = (children, onclick, props) => Button({ ...props, children, onclick });
 
-export const Link = (text, href, props) => A({ text, href, ...props });
+export const Link = (children, href, props) => A({ ...props, children, href });
 
-export const FauxLink = (text, onclick, href = '#', props) =>
+export const FauxLink = (children, onclick, href = '#', props) =>
   A({
-    text,
-    href,
     ...{
       ...props,
       onclick
-    }
+    },
+    children,
+    href
   });
 
 // size: ['span', 'p', 'h1', 'h2', 'h3', 'h4']
-export const Text = (text, { type = 'p', props } = {}) =>
-  Frag(type, { text, ...props });
+export const Text = (children, { type = 'p', props } = {}) =>
+  Frag(type, { ...props, children });
 
 export const TextInput = (props) =>
   Input({ type: 'text', ...props });

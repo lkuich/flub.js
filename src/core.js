@@ -2,6 +2,12 @@ const isFn = (fn) => typeof fn === 'function';
 
 const buildFrag = (children) => {
   const frag = document.createDocumentFragment();
+  
+  // Accept a single child
+  if (!Array.isArray(children)) {
+    children = [children];
+  }
+
   children.forEach(child => {
     const childElm = buildChild(child);
     if (childElm) frag.append(childElm)
@@ -53,6 +59,7 @@ export function Frag(type, props) {
 }
 
 export const Div = (props) => Frag('div', props);
+export const Br = (props) => Frag('br', props);
 export const A = (props) => Frag('a', props);
 export const P = (props) => Frag('p', props);
 export const H = ({ h = 1, ...props }) => Frag(`h${h}`, props);
@@ -63,3 +70,4 @@ export const Li = (props) => Frag('li', props);
 export const Ul = (props) => Frag('ul', props);
 export const Form = (props) => Frag('form', props);
 export const Img = (props) => Frag('img', props);
+export const Nbsp = () => document.createTextNode(' ');
