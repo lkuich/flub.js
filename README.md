@@ -117,7 +117,9 @@ App(document.body, { children: [
 
 function Counter({ count = 0 }, { setState }) {
   return Row([
-    Text(`Count: ${count}`, { type: 'h1' }),
+    // Since we want to pass 'count' to a child component,
+    //  we have to supply the prop, and it's hooks (so it can access setState, and useCreation!)
+    (_, hooks) => CounterLabel({ ..._, count }, hooks),
 
     Btn("+", () =>
       setState({ count: count + 1 })
@@ -128,9 +130,15 @@ function Counter({ count = 0 }, { setState }) {
     )
   ], { gap: '2px', alignItems: 'center' });
 }
+
+function CounterLabel({ count = 0 }) {
+  return Text(`Count: ${count}`, { type: 'h1' });
+}
 ```
 
-See the [SnapShot flub example](https://github.com/lkuich/flub.js/blob/master/examples/SnapShot) for a complete example!.
+Check out the [SnapShot flub app](https://codesandbox.io/s/lingering-darkness-640hgr?fontsize=14&hidenavigation=1&theme=dark) for a more complete example!
+
+[![Edit lingering-darkness-640hgr](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/lingering-darkness-640hgr?fontsize=14&hidenavigation=1&theme=dark)
 
 ### Footnotes
 

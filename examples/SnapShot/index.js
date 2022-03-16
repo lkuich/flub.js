@@ -1,4 +1,4 @@
-import { App, H, Img, Span, Button, Br, Nbsp } from 'https://unpkg.com/flub.js/dist/core.js';
+import { App, Img, Span, Button, Nbsp } from 'https://unpkg.com/flub.js/dist/core.js';
 import { Row, Btn, Text, Link, Column, Box, ManagedForm, TextInput } from 'https://unpkg.com/flub.js/dist/components.js';
 
 const flubGithub = 'https://github.com/lkuich/flub.js';
@@ -18,22 +18,7 @@ function flickrSearch({ flickrApiKey, search }) {
 
 function Main({ search }, { setState }) {
   return Column([
-    Column([
-      Box([
-        H({ h: 1, text: "SnapShot in", children: [
-          Nbsp(),
-          Link('flub.js', flubGithub, { target: '_blank' })
-        ]})
-      ]),
-      Row([
-        Span({ text: "Based off of: ", children: [
-          Nbsp(),
-          Link('SnapShot React', 'https://github.com/Yog9/SnapShot', { target: '_blank' })
-        ]})
-      ]),
-
-      Br()
-    ], { alignItems: 'center' }),
+    Heading,
 
     ManagedForm({
       name: 'search-form',
@@ -51,6 +36,21 @@ function Main({ search }, { setState }) {
     RecommendedSearches(setState),
 
     (_, hooks) => SearchResults({ ..._, search }, hooks)
+  ], { alignItems: 'center' });
+}
+
+function Heading() {
+  return Column([
+    Text([
+      'SnapShot in',
+      Nbsp(),
+      Link('flub.js', flubGithub, { target: '_blank' })
+    ], { type: 'h1' }),
+    Text([
+      "Based off of: ",
+      Nbsp(),
+      Link('SnapShot React', 'https://github.com/Yog9/SnapShot', { target: '_blank' })
+    ]),
   ], { alignItems: 'center' });
 }
 
