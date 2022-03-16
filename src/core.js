@@ -60,12 +60,25 @@ export function Frag(type, props) {
 
 export const Div = (props) => Frag('div', props);
 export const Br = (props) => Frag('br', props);
+export const Hr = (props) => Frag('hr', props);
 export const A = (props) => Frag('a', props);
 export const P = (props) => Frag('p', props);
 export const H = ({ h = 1, ...props }) => Frag(`h${h}`, props);
 export const Button = (props) => Frag('button', props);
-export const Input = (props) => Frag('input', props);
+export const Input = (props) => {
+  const input = Frag('input', props);
+
+  if (props.label) {
+    return Label({ children: [
+      Span({ text: props.label }),
+      input
+    ]});
+  }
+
+  return input;
+}
 export const Span = (props) => Frag('span', props);
+export const Label = (props) => Frag('label', props);
 export const Li = (props) => Frag('li', props);
 export const Ul = (props) => Frag('ul', props);
 export const Form = (props) => Frag('form', props);
