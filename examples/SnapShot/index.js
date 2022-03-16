@@ -1,5 +1,5 @@
-import { App, H, Img, Span, Button, Br, Nbsp } from'./flub/core.js';
-import { Row, Btn, Text, Link, Column, Box, ManagedForm, TextInput } from './flub/components.js';
+import { App, H, Img, Span, Button, Br, Nbsp } from 'https://unpkg.com/flub.js/dist/core.js';
+import { Row, Btn, Text, Link, Column, Box, ManagedForm, TextInput } from 'https://unpkg.com/flub.js/dist/components.js';
 
 const flubGithub = 'https://github.com/lkuich/flub.js';
 
