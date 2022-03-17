@@ -1,7 +1,7 @@
 # flub.js
 <img src="https://i.giphy.com/media/G918yAdtAeaqs/giphy.gif" />
 
-With inspiration from React and Flutter, flub is a minimal JS framework (`core` sits little over 1 kB) for quickly prototyping basic JS frontend apps. Born purely out of the hatrid of working with vanilla JS, and all the hassle of setting up and deploying frameworks like React, Vue, or Angular; flub is meant to be a helper where other, more heavy handed solutions might not be warrented.
+With inspiration from React and Flutter, flub is a minimal JS framework (`core` sits little over 1 kB) for quickly prototyping basic JS frontend apps. Born purely out of the hatred of working with vanilla JS, and all the hassle of setting up and deploying frameworks like React, Vue, or Angular; flub is meant to be a helper where other, more heavy handed solutions might not be warranted.
 
 Some advantages of flub.js:
 - Vanilla JS, no external dependancies, components are just POCO functions, no compilation, virtual DOM, translation, ect
